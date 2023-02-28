@@ -1,15 +1,14 @@
-import { throttle } from "lodash";
+import { throttle } from 'lodash';
 
 const form = document.querySelector('.feedback-form');
 const email = document.querySelector('input[name="email"]');
 const message = document.querySelector('textarea[name="message"]');
 const LOCALSTORAGE_KEY = 'feedback-form-state';
 
-from.addEventListener(
+form.addEventListener(
   'input',
   throttle(e => {
-    const objectToSave = {email: email.value, message: message.value};
-
+    const objectToSave = { email: email.value, message: message.value };
     localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(objectToSave));
   }, 500)
 );
@@ -17,11 +16,10 @@ from.addEventListener(
 form.addEventListener('submit', e => {
   e.preventDefault();
 
-  if (email.value === '' || message.value === '') {
-    return alert('Please, fill in all the fields');
-  }
-
-  console.log({email: email.value, message: message.value});
+  if (email.value === "" || message.value === "") {
+    return alert("Please fill in all the fields!");
+}
+  console.log({ email: email.value, message: message.value });
 
   form.reset();
   localStorage.removeItem(LOCALSTORAGE_KEY);
@@ -37,8 +35,7 @@ const load = key => {
 };
 
 const storageData = load(LOCALSTORAGE_KEY);
-
-if (storageData) {
-  email.value = storageData.email;
-  message.value = storageData.message;
-};
+  if (storageData) {
+    email.value = storageData.email;
+    message.value = storageData.message;
+  }
