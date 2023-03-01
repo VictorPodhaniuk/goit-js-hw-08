@@ -9,7 +9,7 @@ form.addEventListener(
   'input',
   throttle(e => {
     const objectToSave = { email: email.value, message: message.value };
-    localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(objectToSave));
+    localStorage.setItem('objectToSave', JSON.stringify(objectToSave));
   }, 500)
 );
 
@@ -22,7 +22,7 @@ form.addEventListener('submit', e => {
   console.log({ email: email.value, message: message.value });
 
   form.reset();
-  localStorage.removeItem(LOCALSTORAGE_KEY);
+  localStorage.removeItem('objectToSave');
 });
 
 const load = key => {
